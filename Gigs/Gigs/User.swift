@@ -1,13 +1,14 @@
 //
-//  Use.swift
-//  Gigs
+//  User.swift
+//  AnimalSpotter
 //
-//  Created by Waseem Idelbi on 6/6/22.
+//  Created by Waseem Idelbi on 6/7/22.
+//  Copyright © 2022 BloomTech. All rights reserved.
 //
 
 import Foundation
 
-struct User {
-    var username: String
-    var password: String
+struct User: Codable {
+    let username: String
+    let password: String
 }
