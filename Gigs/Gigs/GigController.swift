@@ -33,8 +33,8 @@ class GigController {
         return request
     }
     // Create an account for a new user
-    func signUp(userName: String, password: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        let user = User(username: userName, password: password)
+    func signUp(username: String, password: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        let user = User(username: username, password: password)
         var request = postRequest(with: baseURL.appendingPathComponent("signup"))
         
         do {
@@ -65,7 +65,48 @@ class GigController {
         .resume()
     }
     // Sign into an existing user's existing account
-    func sighIn(userName: String, password: String, completion: @escaping (Error?) -> Void) {
+    func sighIn(username: String, password: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        let user = User(username: username, password: password)
+        var request = postRequest(with: baseURL.appendingPathComponent("login"))
+        
+        do {
+            request.httpBody = try encoder.encode(user)
+            
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("ERROR: Sign in failed with error: \(error.localizedDescription)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+                guard let response = response as? HTTPURLResponse,
+                      response.statusCode == 200 else {
+                    print("Sign in failed!")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+                guard let data = data else {
+                    print("Data not found!")
+                    completion(.failure(.noData))
+                    return
+                }
+                
+                do {
+                    self.bearer = try self.decoder.decode(Bearer.self, from: data)
+                    completion(.success(true))
+                } catch {
+                    print("ERROR: Couldn't decode bearer with error: \(error.localizedDescription)")
+                    completion(.failure(.noToken))
+                    return
+                }
+                
+            }
+            .resume()
+            
+        } catch {
+            print("ERROR: Could not encode user into data")
+            completion(.failure(.noEncode))
+            return
+        }
         
     }
     
