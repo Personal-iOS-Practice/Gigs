@@ -63,10 +63,8 @@ class LoginViewController: UIViewController {
     func disableSignButton() {
         signButton.isEnabled = false
     }
-    
-//MARK: - IBAction
-    // Activates when the user switched user type via segmented control
-    @IBAction func loginTypeValueChanged(_ sender: UISegmentedControl) {
+    // Handles updating UI based on the selected segment
+    func switchLoginType() {
         switch loginTypeSegmentedControl.selectedSegmentIndex {
         case 1:
             loginType = .logIn
@@ -75,6 +73,12 @@ class LoginViewController: UIViewController {
             loginType = .signUp
             signButton.setTitle("Sign Up", for: .normal)
         }
+    }
+    
+//MARK: - IBAction
+    // Activates when the user switched user type via segmented control
+    @IBAction func loginTypeValueChanged(_ sender: UISegmentedControl) {
+        switchLoginType()
     }
     // Button used for signing up or signing in
     @IBAction func signButtonTapped(_ sender: UIButton) {
@@ -108,6 +112,7 @@ class LoginViewController: UIViewController {
                         let isSignedUp = try result.get()
                         self.presentSignResultAlert(for: .signUp, result: isSignedUp)
                         self.loginTypeSegmentedControl.selectedSegmentIndex = 1
+                        self.switchLoginType()
                         self.enableSignButton()
                     } catch {
                         print("ERROR: Sign-Up failed with error message: \(error)")
