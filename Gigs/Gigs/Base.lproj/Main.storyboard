@@ -91,19 +91,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgM-I2-Dd0">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pnt-rY-gQU">
                                         <rect key="frame" x="54.5" y="144" width="275" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemMintColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="275" id="0mj-uD-yLb"/>
-                                            <constraint firstAttribute="height" constant="60" id="UCn-pQ-z1M"/>
+                                            <constraint firstAttribute="width" constant="275" id="aQW-4o-5HX"/>
+                                            <constraint firstAttribute="height" constant="60" id="x1j-R1-PPt"/>
                                         </constraints>
-                                        <color key="tintColor" systemColor="systemMintColor"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Sign Up">
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up">
                                             <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="signButtonTapped:" destination="WC1-Qf-WhA" eventType="touchUpInside" id="p7a-fX-7V1"/>
+                                            <action selector="signButtonTapped:" destination="WC1-Qf-WhA" eventType="touchUpInside" id="Lmf-DU-KWe"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -126,7 +127,7 @@
                     <connections>
                         <outlet property="loginTypeSegmentedControl" destination="56V-2F-wgC" id="Suw-Ce-RqY"/>
                         <outlet property="passwordTextField" destination="AT7-Pq-rbi" id="nYV-Oa-EXa"/>
-                        <outlet property="signButton" destination="LgM-I2-Dd0" id="wlm-8e-YBn"/>
+                        <outlet property="signButton" destination="pnt-rY-gQU" id="zys-5R-BZB"/>
                         <outlet property="usernameTextField" destination="ST1-Eg-T9W" id="fUP-Hw-M7I"/>
                     </connections>
                 </viewController>
