@@ -52,6 +52,14 @@ class LoginViewController: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true)
     }
+    // Enable the login button
+    func enableSignButton() {
+        signButton.isEnabled = true
+    }
+    //Disable the login button
+    func disableSignButton() {
+        signButton.isEnabled = false
+    }
     
 //MARK: - IBAction
     // Activates when the user switched user type via segmented control
@@ -67,6 +75,7 @@ class LoginViewController: UIViewController {
     }
     // Button used for signing up or signing in
     @IBAction func signButtonTapped(_ sender: UIButton) {
+        disableSignButton()
         guard let gigController = gigController,
         let username = usernameTextField.text,
         let password = passwordTextField.text else { return }
@@ -79,10 +88,11 @@ class LoginViewController: UIViewController {
                     do {
                         let isLoggedIn = try result.get()
                         self.presentSignResultAlert(for: .logIn, result: isLoggedIn)
-                        self.dismiss(animated: true)
+                        self.enableSignButton()
                     } catch {
                         print("ERROR: Login failed with error message: \(error)")
                         self.presentSignResultAlert(for: .logIn, result: false)
+                        self.enableSignButton()
                     }
                 }
             }
@@ -95,9 +105,11 @@ class LoginViewController: UIViewController {
                         let isSignedUp = try result.get()
                         self.presentSignResultAlert(for: .signUp, result: isSignedUp)
                         self.loginTypeSegmentedControl.selectedSegmentIndex = 1
+                        self.enableSignButton()
                     } catch {
                         print("ERROR: Sign-Up failed with error message: \(error)")
                         self.presentSignResultAlert(for: .signUp, result: false)
+                        self.enableSignButton()
                     }
                 }
             }

@@ -78,7 +78,7 @@
                                         </segments>
                                         <color key="tintColor" systemColor="systemMintColor"/>
                                         <connections>
-                                            <action selector="userTypeValueChanged:" destination="WC1-Qf-WhA" eventType="valueChanged" id="cKF-ZL-A6n"/>
+                                            <action selector="loginTypeValueChanged:" destination="WC1-Qf-WhA" eventType="valueChanged" id="0gI-kB-0FW"/>
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ST1-Eg-T9W">
