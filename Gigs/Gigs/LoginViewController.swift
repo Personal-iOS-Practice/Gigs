@@ -25,13 +25,16 @@ class LoginViewController: UIViewController {
     func presentSignResultAlert(for loginType: LoginType, result: Bool) {
         var alertTitle = ""
         var alertMessage = ""
-        let okAction = UIAlertAction(title: "Ok", style: .default)
+        var okAction = UIAlertAction(title: "Ok", style: .default)
         
         switch loginType {
         case .logIn:
             switch result {
             case true:
                 alertTitle = "Login Successful!"
+                okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                    self.dismiss(animated: true)
+                })
             case false:
                 alertTitle = "Login Failed"
                 alertTitle = "Unable to log in with the entered credentials, please double check your credentials and try again"
