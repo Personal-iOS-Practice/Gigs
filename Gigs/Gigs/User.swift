@@ -12,3 +12,8 @@ struct User: Codable {
     let username: String
     let password: String
 }
+
+enum LoginType {
+    case logIn
+    case signUp
+}

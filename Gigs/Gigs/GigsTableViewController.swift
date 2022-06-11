@@ -44,7 +44,10 @@ class GigsTableViewController: UITableViewController {
     
 //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "LoginSegue" {
+            let loginVC = segue.destination as! LoginViewController
+            loginVC.gigController = gigController
+        }
     }
     
 }
