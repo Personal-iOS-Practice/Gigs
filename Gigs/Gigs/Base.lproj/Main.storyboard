@@ -40,6 +40,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="5g4-i3-lPh" kind="show" identifier="ViewGigSegue" id="XlE-qp-TOo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,7 +50,13 @@
                             <outlet property="delegate" destination="7Dd-54-iOl" id="KtX-en-eOI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gigs" id="Q6l-iI-tqE"/>
+                    <navigationItem key="navigationItem" title="Gigs" id="Q6l-iI-tqE">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pvc-Ve-jPr">
+                            <connections>
+                                <segue destination="5g4-i3-lPh" kind="show" identifier="NewGigSegue" id="gfX-cE-frc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="WC1-Qf-WhA" kind="presentation" identifier="LoginSegue" modalPresentationStyle="fullScreen" id="JuP-Ei-pm5"/>
                     </connections>
@@ -55,6 +64,98 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfK-xd-ybt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="855.07246376811599" y="86.383928571428569"/>
+        </scene>
+        <!--Gig Detail View Controller-->
+        <scene sceneID="3Ay-NY-dxJ">
+            <objects>
+                <viewController id="5g4-i3-lPh" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vZc-jd-l7o">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G34-xB-bdt">
+                                <rect key="frame" x="15" y="194" width="384" height="180.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE DATE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEW-xF-yvk">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="9DG-Y3-tjt">
+                                        <rect key="frame" x="0.0" y="30.5" width="384" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="drM-iu-QCK"/>
+                                        </constraints>
+                                    </datePicker>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qqM-hJ-rcA">
+                                <rect key="frame" x="15" y="150" width="384" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOB TITLE:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJq-bZ-A77">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zzd-lG-qsP">
+                                        <rect key="frame" x="95" y="0.0" width="289" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="p1v-XJ-FOm">
+                                <rect key="frame" x="15" y="394.5" width="384" height="158.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b0-2k-0vy">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o4r-v5-Gxf">
+                                        <rect key="frame" x="0.0" y="30.5" width="384" height="128"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="N87-rc-5Dg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="N87-rc-5Dg" firstAttribute="trailing" secondItem="p1v-XJ-FOm" secondAttribute="trailing" constant="15" id="1Ro-uP-oSg"/>
+                            <constraint firstItem="G34-xB-bdt" firstAttribute="leading" secondItem="N87-rc-5Dg" secondAttribute="leading" constant="15" id="1fo-8V-mjc"/>
+                            <constraint firstItem="qqM-hJ-rcA" firstAttribute="top" secondItem="N87-rc-5Dg" secondAttribute="top" constant="10" id="Nbo-xK-h6a"/>
+                            <constraint firstItem="N87-rc-5Dg" firstAttribute="trailing" secondItem="qqM-hJ-rcA" secondAttribute="trailing" constant="15" id="T5R-6O-pSe"/>
+                            <constraint firstItem="N87-rc-5Dg" firstAttribute="trailing" secondItem="G34-xB-bdt" secondAttribute="trailing" constant="15" id="V8k-wL-5mo"/>
+                            <constraint firstItem="p1v-XJ-FOm" firstAttribute="top" secondItem="G34-xB-bdt" secondAttribute="bottom" constant="20" id="Z9s-Ke-2I8"/>
+                            <constraint firstItem="qqM-hJ-rcA" firstAttribute="leading" secondItem="N87-rc-5Dg" secondAttribute="leading" constant="15" id="ZuR-So-Us2"/>
+                            <constraint firstItem="p1v-XJ-FOm" firstAttribute="leading" secondItem="N87-rc-5Dg" secondAttribute="leading" constant="15" id="s4k-Au-LwD"/>
+                            <constraint firstItem="G34-xB-bdt" firstAttribute="top" secondItem="qqM-hJ-rcA" secondAttribute="bottom" constant="10" id="vVc-eu-Ed9"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Sea-Iz-nGj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="XPP-Qr-1Aj">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="5g4-i3-lPh" id="4Q4-FT-xoF"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="descriptionTextView" destination="o4r-v5-Gxf" id="xB9-Ot-4Nk"/>
+                        <outlet property="dueDatePicker" destination="9DG-Y3-tjt" id="Teh-4w-Gnr"/>
+                        <outlet property="jobTitleTextField" destination="zzd-lG-qsP" id="yKn-RF-weV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3gs-Kr-7pY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628.985507246377" y="85.714285714285708"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="Fsu-dn-sIy">
@@ -133,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tOh-RC-XU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634.7826086956522" y="85.714285714285708"/>
+            <point key="canvasLocation" x="855" y="806"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bqc-ip-3fZ">
@@ -154,7 +255,13 @@
             <point key="canvasLocation" x="145" y="86"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XlE-qp-TOo"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
