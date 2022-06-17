@@ -14,6 +14,8 @@ enum NetworkError: Error {
     case noToken
     case noDecode
     case noEncode
+    case failedRequest
+    case failCode
 }
 
 class GigController {
@@ -22,6 +24,7 @@ class GigController {
     var gigs: [Gig] = []
     var bearer: Bearer?
     var authenticationBaseURL = URL(string: "https://lambdagigapi.herokuapp.com/api/users")!
+    let lukeSkywalkerURL = URL(string: "https://swapi.dev/api/people/1/")!
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
@@ -110,6 +113,37 @@ class GigController {
         
     }
     // Fetch gigs from API
-    
+    func fetchLukeAsGig(completion: @escaping (Result<Gig, NetworkError>) -> Void) {
+        URLSession.shared.dataTask(with: lukeSkywalkerURL) { data, response, error in
+            if let error = error {
+                print("ERROR: Failed to fetch Luke's data with error message: \(error)")
+                completion(.failure(.failedRequest))
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+            response.statusCode == 200 else {
+                print("ERROR: Failed response code!")
+                completion(.failure(.failCode))
+                return
+            }
+            guard let data = data else {
+                print("ERROR: Data not found!")
+                completion(.failure(.noData))
+                return
+            }
+            
+            do {
+                let lukeAsGig = try self.decoder.decode(Gig.self, from: data)
+                completion(.success(lukeAsGig))
+                
+            } catch {
+                print("ERROR: Could not convert Luke's data into a gig instance with error message: \(error)")
+                completion(.failure(.noDecode))
+                return
+            }
+
+
+        }
+    }
     
 }
