@@ -30,7 +30,7 @@ class GigsTableViewController: UITableViewController {
         if let _ = gigController.bearer {
             // TODO: fetch gigs here
         } else {
-            performSegue(withIdentifier: "LoginSegue", sender: self)
+//            performSegue(withIdentifier: "LoginSegue", sender: self)
         }
     }
 
@@ -54,7 +54,34 @@ class GigsTableViewController: UITableViewController {
         if segue.identifier == "LoginSegue" {
             let loginVC = segue.destination as! LoginViewController
             loginVC.gigController = gigController
+        } else if segue.identifier == "NewGigSegue" {
+            let detailVC = segue.destination as! GigDetailViewController
+            detailVC.gigController = gigController
+            detailVC.delegate = self
+        } else if segue.identifier == "ViewGigSegue" {
+            let detailVC = segue.destination as! GigDetailViewController
+            let indexPath = tableView.indexPathForSelectedRow!
+            let gig = gigController.gigs[indexPath.row]
+            detailVC.delegate = self
+            detailVC.gigController = gigController
+            detailVC.gig = gig
+            
         }
     }
     
+}
+
+extension GigsTableViewController: GigDelegate {
+    // When a new gig is added
+    func gigWasAdded(gig: Gig) {
+        gigController.gigs.append(gig)
+        tableView.reloadData()
+    }
+    // When an existing gig is modified
+    func gigWasModified(oldGig: Gig, newGig: Gig) {
+        guard let index = gigController.gigs.firstIndex(where: { $0 == oldGig }) else { return }
+        gigController.gigs.remove(at: index)
+        gigController.gigs.insert(newGig, at: index)
+        tableView.reloadData()
+    }
 }

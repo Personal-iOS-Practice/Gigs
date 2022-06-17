@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Gig: Codable {
+struct Gig: Codable, Equatable {
     
 //MARK: - Properties
     var title: String

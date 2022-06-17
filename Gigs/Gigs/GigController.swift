@@ -19,7 +19,7 @@ enum NetworkError: Error {
 class GigController {
     
 //MARK: - Properties
-    var gigs: [Gig] = [Gig(title: "Some random gig", description: "who the hell cares", dueDate: Date())]
+    var gigs: [Gig] = []
     var bearer: Bearer?
     var authenticationBaseURL = URL(string: "https://lambdagigapi.herokuapp.com/api/users")!
     let encoder = JSONEncoder()

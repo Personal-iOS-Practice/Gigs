@@ -92,8 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				7B35552A284EE560005392C9 /* GigsTableViewController.swift */,
-				7B35552C284EE83D005392C9 /* LoginViewController.swift */,
 				7B4FA01B28597AA700BF269D /* GigDetailViewController.swift */,
+				7B35552C284EE83D005392C9 /* LoginViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
