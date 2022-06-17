@@ -19,8 +19,9 @@ enum NetworkError: Error {
 class GigController {
     
 //MARK: - Properties
+    var gigs: [Gig] = [Gig(title: "Some random gig", description: "who the hell cares", dueDate: Date())]
     var bearer: Bearer?
-    var baseURL = URL(string: "https://lambdagigapi.herokuapp.com/api/users")!
+    var authenticationBaseURL = URL(string: "https://lambdagigapi.herokuapp.com/api/users")!
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
@@ -35,7 +36,7 @@ class GigController {
     // Create an account for a new user
     func signUp(username: String, password: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         let user = User(username: username, password: password)
-        var request = postRequest(with: baseURL.appendingPathComponent("signup"))
+        var request = postRequest(with: authenticationBaseURL.appendingPathComponent("signup"))
         
         do {
             let userData = try encoder.encode(user)
@@ -59,7 +60,6 @@ class GigController {
                 completion(.failure(.failedSignUp))
                 return
             }
-            
             completion(.success(true))
         }
         .resume()
@@ -67,7 +67,7 @@ class GigController {
     // Sign into an existing user's existing account
     func sighIn(username: String, password: String, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         let user = User(username: username, password: password)
-        var request = postRequest(with: baseURL.appendingPathComponent("login"))
+        var request = postRequest(with: authenticationBaseURL.appendingPathComponent("login"))
         
         do {
             request.httpBody = try encoder.encode(user)
@@ -109,5 +109,7 @@ class GigController {
         }
         
     }
+    // Fetch gigs from API
+    
     
 }
