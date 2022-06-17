@@ -14,4 +14,11 @@ struct Gig: Codable, Equatable {
     var description: String
     var dueDate: Date
     
+//MARK: - Coding Keys
+    enum CodingKeys: String, CodingKey {
+        case title = "name"
+        case description = "hair_color"
+        case dueDate = "created"
+    }
+    
 }
