@@ -28,9 +28,24 @@ class GigsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if let _ = gigController.bearer {
-            // TODO: fetch gigs here
+            getLukeAsGig()
         } else {
-//            performSegue(withIdentifier: "LoginSegue", sender: self)
+            performSegue(withIdentifier: "LoginSegue", sender: self)
+        }
+    }
+    // Handle fetching and showing Luke's data
+    func getLukeAsGig() {
+        gigController.fetchLukeAsGig { result in
+            DispatchQueue.main.async {
+                do {
+                    let lukeGig = try result.get()
+                    self.gigController.gigs.append(lukeGig)
+                    self.tableView.reloadData()
+                } catch {
+                    print("ERROR: Failed getting Luke as a Gig with error message: \(error)")
+                    return
+                }
+            }
         }
     }
 

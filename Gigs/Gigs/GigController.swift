@@ -27,6 +27,12 @@ class GigController {
     let lukeSkywalkerURL = URL(string: "https://swapi.dev/api/people/1/")!
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
+    // Date formatter
+    var dateFormatter: ISO8601DateFormatter {
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = .withFractionalSeconds
+        return dateFormatter
+    }
     
 //MARK: - Methods
     // creates a POST request
@@ -112,7 +118,7 @@ class GigController {
         }
         
     }
-    // Fetch gigs from API
+    // Fetch Luke's data from API to fill in for the Gig model
     func fetchLukeAsGig(completion: @escaping (Result<Gig, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: lukeSkywalkerURL) { data, response, error in
             if let error = error {
@@ -133,7 +139,13 @@ class GigController {
             }
             
             do {
-                let lukeAsGig = try self.decoder.decode(Gig.self, from: data)
+                let lukePlaceholderGig = try self.decoder.decode(PlaceholderGig.self, from: data)
+                
+                let title = lukePlaceholderGig.title
+                let description = lukePlaceholderGig.description
+                let dueDate = self.dateFormatter.date(from: lukePlaceholderGig.dueDate)!
+                
+                let lukeAsGig = Gig(title: title, description: description, dueDate: dueDate)
                 completion(.success(lukeAsGig))
                 
             } catch {
@@ -144,6 +156,7 @@ class GigController {
 
 
         }
+        .resume()
     }
     
 }

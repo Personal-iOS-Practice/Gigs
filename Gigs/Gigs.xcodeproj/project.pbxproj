@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B292BEA285CC9670030DC4A /* PlaceholderGig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B292BE9285CC9670030DC4A /* PlaceholderGig.swift */; };
 		7B355514284EE475005392C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B355513284EE475005392C9 /* AppDelegate.swift */; };
 		7B355516284EE475005392C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B355515284EE475005392C9 /* SceneDelegate.swift */; };
 		7B35551B284EE475005392C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B355519284EE475005392C9 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B292BE9285CC9670030DC4A /* PlaceholderGig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderGig.swift; sourceTree = "<group>"; };
 		7B355510284EE475005392C9 /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B355513284EE475005392C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B355515284EE475005392C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				7B35552F284EEA08005392C9 /* Bearer.swift */,
 				7B355531284EEA9F005392C9 /* User.swift */,
 				7B4FA01D28597BC000BF269D /* Gig.swift */,
+				7B292BE9285CC9670030DC4A /* PlaceholderGig.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				7B355530284EEA08005392C9 /* Bearer.swift in Sources */,
 				7B4FA01C28597AA700BF269D /* GigDetailViewController.swift in Sources */,
 				7B355535284EEB1D005392C9 /* GigController.swift in Sources */,
+				7B292BEA285CC9670030DC4A /* PlaceholderGig.swift in Sources */,
 				7B355532284EEAA0005392C9 /* User.swift in Sources */,
 				7B35552D284EE83D005392C9 /* LoginViewController.swift in Sources */,
 				7B35552B284EE560005392C9 /* GigsTableViewController.swift in Sources */,
